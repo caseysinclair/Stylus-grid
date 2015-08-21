@@ -1,0 +1,79 @@
+// varibles
+grid-size         = 12
+column-padding    = 1em
+break-400         = "screen and (min-width: 400px)"
+break-600         = "screen and (min-width: 600px)"
+break-800         = "screen and (min-width: 800px)"
+colour-1          = #E3E3E3
+colour-2          = #33CCFF 
+
+// operation
+column-width(count)
+  count / grid-size * 100%
+
+// mixin
+column(count)
+  @extend .grid-defaults 
+  width round(column-width(count),4)
+  padding: 1em
+  transition: all 0.2s ease
+
+
+.show-grid
+  background: mix(colour-1, colour-2, 40%)
+  border: 1px solid #666;
+  //transition: background 3s all
+  @media break-600
+    background: mix(colour-1, colour-2, 90%) 
+    transition: background 3s all
+
+.grid-defaults
+  @extend .show-grid
+  display: inline-block
+  box-sizing: border-box
+  zoom: 1;
+  font-size: 1em
+  margin: 0.1em auto
+  min-height: 100px
+  vertical-align: top;
+  letter-spacing: 0.01em;
+
+  
+// Example    
+.contains 
+  width: 100%
+  min-width: 320px
+  letter-spacing: -.31em
+   
+.content-main
+  column(12)
+  @media break-600
+    column(6)  
+    
+.content-secondary
+  column(6)
+
+  @media break-600
+    column(4)
+    
+.content-media
+  column(6)
+  @media break-600
+    column(2)
+    
+.content-block
+  column(12)
+  @media break-600
+    column(4) 
+    
+ .content-half
+  column(6)
+  @media break-600
+    column(6)
+    
+ body
+   margin: 1em 1em
+  
+  
+  /* column() stylus grid on demand  */
+
